@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
   objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-  <changeSet id="1666257675077-1" author="Ivan (generated)">
+  <changeSet id="cinema" author="Ivan Sbaiz">
     <createTable tableName="cinema">
       <column autoIncrement="true" name="id" type="INT">
         <constraints nullable="false" primaryKey="true"/>
@@ -18,7 +18,7 @@
       </column>
     </createTable>
   </changeSet>
-  <changeSet id="1666257675077-2" author="Ivan (generated)">
+  <changeSet id="film" author="Ivan Sbaiz">
     <createTable tableName="film">
       <column autoIncrement="true" name="id" type="INT">
         <constraints nullable="false" primaryKey="true"/>
@@ -33,9 +33,12 @@
         <constraints nullable="false"/>
       </column>
       <column name="film_length" type="DOUBLE"/>
+      <column name="genre" type="INT">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
   </changeSet>
-  <changeSet id="1666257675077-3" author="Ivan (generated)">
+  <changeSet id="projection_room" author="Ivan Sbaiz">
     <createTable tableName="projection_room">
       <column autoIncrement="true" name="id" type="INT">
         <constraints nullable="false" primaryKey="true"/>
@@ -43,7 +46,7 @@
       <column name="seats" type="INT">
         <constraints nullable="false"/>
       </column>
-      <column name="price" type="DOUBLE">
+      <column name="total_gained" type="DOUBLE">
         <constraints nullable="false"/>
       </column>
       <column name="id_film" type="INT">
@@ -51,7 +54,7 @@
       </column>
     </createTable>
   </changeSet>
-  <changeSet id="1666257675077-4" author="Ivan (generated)">
+  <changeSet id="spectator" author="Ivan Sbaiz">
     <createTable tableName="spectator">
       <column autoIncrement="true" name="id" type="INT">
         <constraints nullable="false" primaryKey="true"/>
@@ -70,7 +73,7 @@
       <column name="age" type="INT"/>
     </createTable>
   </changeSet>
-  <changeSet id="1666257675077-5" author="Ivan (generated)">
+  <changeSet id="ticket" author="Ivan Sbaiz">
     <createTable tableName="ticket">
       <column autoIncrement="true" name="id" type="INT">
         <constraints nullable="false" primaryKey="true"/>
@@ -95,52 +98,52 @@
       </column>
     </createTable>
   </changeSet>
-  <changeSet id="1666257675077-6" author="Ivan (generated)">
+  <changeSet id="1666263978325-6" author="Ivan Sbaiz">
     <createIndex indexName="fk_film_id_idx" tableName="ticket">
       <column name="id_film"/>
     </createIndex>
   </changeSet>
-  <changeSet id="1666257675077-7" author="Ivan (generated)">
+  <changeSet id="1666263978325-7" author="Ivan Sbaiz">
     <createIndex indexName="fk_id_film_idx" tableName="projection_room">
       <column name="id_film"/>
     </createIndex>
   </changeSet>
-  <changeSet id="1666257675077-8" author="Ivan (generated)">
+  <changeSet id="1666263978325-8" author="Ivan Sbaiz">
     <createIndex indexName="fk_id_ticket_idx" tableName="spectator">
       <column name="id_ticket"/>
     </createIndex>
   </changeSet>
-  <changeSet id="1666257675077-9" author="Ivan (generated)">
+  <changeSet id="1666263978325-9" author="Ivan Sbaiz">
     <createIndex indexName="fk_room_id_idx" tableName="ticket">
       <column name="id_projection_room"/>
     </createIndex>
   </changeSet>
-  <changeSet id="1666257675077-10" author="Ivan (generated)">
+  <changeSet id="1666263978325-10" author="Ivan Sbaiz">
     <createIndex indexName="fk_sala_cinematografica_idx" tableName="cinema">
       <column name="id_projection_room"/>
     </createIndex>
   </changeSet>
-  <changeSet id="1666257675077-11" author="Ivan (generated)">
+  <changeSet id="1666263978325-11" author="Ivan Sbaiz">
     <addForeignKeyConstraint baseColumnNames="id_film" baseTableName="ticket"
       constraintName="fk_film_id" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
       referencedTableName="film"/>
   </changeSet>
-  <changeSet id="1666257675077-12" author="Ivan (generated)">
+  <changeSet id="1666263978325-12" author="Ivan Sbaiz">
     <addForeignKeyConstraint baseColumnNames="id_film" baseTableName="projection_room"
       constraintName="fk_id_film" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
       referencedTableName="film"/>
   </changeSet>
-  <changeSet id="1666257675077-13" author="Ivan (generated)">
+  <changeSet id="1666263978325-13" author="Ivan Sbaiz">
     <addForeignKeyConstraint baseColumnNames="id_ticket" baseTableName="spectator"
       constraintName="fk_id_ticket" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="id"
       referencedTableName="ticket"/>
   </changeSet>
-  <changeSet id="1666257675077-14" author="Ivan (generated)">
+  <changeSet id="1666263978325-14" author="Ivan Sbaiz">
     <addForeignKeyConstraint baseColumnNames="id_projection_room" baseTableName="cinema"
       constraintName="fk_projection_room" onDelete="CASCADE" onUpdate="CASCADE"
       referencedColumnNames="id" referencedTableName="projection_room"/>
   </changeSet>
-  <changeSet id="1666257675077-15" author="Ivan (generated)">
+  <changeSet id="1666263978325-15" author="Ivan Sbaiz">
     <addForeignKeyConstraint baseColumnNames="id_projection_room" baseTableName="ticket"
       constraintName="fk_room_id" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id"
       referencedTableName="projection_room"/>

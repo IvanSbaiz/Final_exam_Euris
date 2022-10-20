@@ -22,13 +22,13 @@ public class ProjectionRoomDto implements Dto {
   @NotNull
   private Integer seats;
   @NotNull
-  private Double price;
+  private Double totalGained;
   @NotNull
   private FilmDto idFilm;
 
   @Override
   public ProjectionRoom toModel() {
-    return ProjectionRoom.builder().id(id).seats(seats).price(price).idFilm(idFilm.toModel())
+    return ProjectionRoom.builder().id(id).seats(seats).totalGained(totalGained).idFilm(idFilm.toModel())
         .build();
   }
 }

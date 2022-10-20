@@ -3,9 +3,12 @@ package it.esame.cinema.data.model;
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
 import it.esame.cinema.data.dto.FilmDto;
+import it.esame.cinema.data.enums.Genre;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,6 +30,7 @@ import org.hibernate.Hibernate;
 public class Film implements Model {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)
   private Integer id;
 
@@ -53,6 +57,9 @@ public class Film implements Model {
   @Column(name = "film_length")
   private Double filmLength;
 
+  @Column(name = "genre")
+  private Genre genre;
+
   @Override
   public String toString() {
     return getClass().getSimpleName() + "(" +
@@ -62,7 +69,8 @@ public class Film implements Model {
         "producer = " + producer + ", " +
         "minAge = " + minAge + ", " +
         "maxAge = " + maxAge + ", " +
-        "filmLength = " + filmLength + ")";
+        "filmLength = " + filmLength + ", " +
+        "genre = " + genre + ")";
   }
 
   @Override
@@ -82,10 +90,8 @@ public class Film implements Model {
     return getClass().hashCode();
   }
 
-
   @Override
   public FilmDto toDto() {
-    return FilmDto.builder().id(id).title(title).author(author).producer(producer).minAge(minAge)
-        .maxAge(minAge).filmLength(filmLength).build();
+    return FilmDto.builder().id(id).title(title).author(author).producer(producer).minAge(minAge).maxAge(maxAge).filmLength(filmLength).genre(genre).build();
   }
 }

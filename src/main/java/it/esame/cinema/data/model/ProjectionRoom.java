@@ -37,8 +37,8 @@ public class ProjectionRoom implements Model {
   private Integer seats;
 
   @NotNull
-  @Column(name = "price", nullable = false)
-  private Double price;
+  @Column(name = "total_gained", nullable = false)
+  private Double totalGained;
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -50,7 +50,7 @@ public class ProjectionRoom implements Model {
     return getClass().getSimpleName() + "(" +
         "id = " + id + ", " +
         "seats = " + seats + ", " +
-        "price = " + price + ")";
+        "price = " + totalGained + ")";
   }
 
   @Override
@@ -72,7 +72,7 @@ public class ProjectionRoom implements Model {
 
   @Override
   public ProjectionRoomDto toDto() {
-    return ProjectionRoomDto.builder().id(id).seats(seats).price(price).idFilm(idFilm.toDto())
+    return ProjectionRoomDto.builder().id(id).seats(seats).totalGained(totalGained).idFilm(idFilm.toDto())
         .build();
   }
 }
