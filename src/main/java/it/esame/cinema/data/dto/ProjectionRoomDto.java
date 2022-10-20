@@ -2,6 +2,7 @@ package it.esame.cinema.data.dto;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.model.ProjectionRoom;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,8 @@ public class ProjectionRoomDto implements Dto {
   private FilmDto idFilm;
 
   @Override
-  public Model toModel() {
-    return null;
+  public ProjectionRoom toModel() {
+    return ProjectionRoom.builder().id(id).seats(seats).price(price).idFilm(idFilm.toModel())
+        .build();
   }
 }

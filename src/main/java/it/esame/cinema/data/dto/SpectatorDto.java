@@ -2,6 +2,7 @@ package it.esame.cinema.data.dto;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.model.Spectator;
 import it.esame.cinema.data.model.Ticket;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -35,7 +36,8 @@ public class SpectatorDto implements Dto {
   private Integer age;
 
   @Override
-  public Model toModel() {
-    return null;
+  public Spectator toModel() {
+    return Spectator.builder().id(id).name(name).surname(surname).dateOfBirth(dateOfBirth)
+        .idTicket(idTicket).ageAllowed(ageAllowed).age(age).build();
   }
 }

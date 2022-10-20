@@ -2,6 +2,7 @@ package it.esame.cinema.data.dto;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.model.Cinema;
 import it.esame.cinema.data.model.ProjectionRoom;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
@@ -25,7 +26,8 @@ public class CinemaDto implements Dto {
   private Double totalIncoming;
 
   @Override
-  public Model toModel() {
-    return null;
+  public Cinema toModel() {
+    return Cinema.builder().id(id).idProjectionRoom(idProjectionRoom).totalIncoming(totalIncoming)
+        .build();
   }
 }

@@ -2,6 +2,7 @@ package it.esame.cinema.data.dto;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.model.Film;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,7 +33,8 @@ public class FilmDto implements Dto {
   private Double filmLength;
 
   @Override
-  public Model toModel() {
-    return null;
+  public Film toModel() {
+    return Film.builder().id(id).title(title).author(author).producer(producer).minAge(minAge)
+        .maxAge(maxAge).filmLength(filmLength).build();
   }
 }

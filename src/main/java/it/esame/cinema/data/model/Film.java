@@ -1,5 +1,8 @@
 package it.esame.cinema.data.model;
 
+import it.esame.cinema.data.archetype.Dto;
+import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.dto.FilmDto;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +24,7 @@ import org.hibernate.Hibernate;
 @Setter
 @Entity(name = "Film")
 @Table(name = "film")
-public class Film {
+public class Film implements Model {
 
   @Id
   @Column(name = "id", nullable = false)
@@ -77,5 +80,12 @@ public class Film {
   @Override
   public int hashCode() {
     return getClass().hashCode();
+  }
+
+
+  @Override
+  public FilmDto toDto() {
+    return FilmDto.builder().id(id).title(title).author(author).producer(producer).minAge(minAge)
+        .maxAge(minAge).filmLength(filmLength).build();
   }
 }

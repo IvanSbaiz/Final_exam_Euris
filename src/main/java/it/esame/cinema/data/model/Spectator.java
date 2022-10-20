@@ -1,5 +1,8 @@
 package it.esame.cinema.data.model;
 
+import it.esame.cinema.data.archetype.Dto;
+import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.dto.SpectatorDto;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -25,7 +28,7 @@ import org.hibernate.Hibernate;
 @Setter
 @Entity(name = "Spectator")
 @Table(name = "spectator")
-public class Spectator {
+public class Spectator implements Model {
 
   @Id
   @Column(name = "id", nullable = false)
@@ -81,5 +84,11 @@ public class Spectator {
   @Override
   public int hashCode() {
     return getClass().hashCode();
+  }
+
+  @Override
+  public SpectatorDto toDto() {
+    return SpectatorDto.builder().id(id).name(name).surname(surname).dateOfBirth(dateOfBirth)
+        .idTicket(idTicket).ageAllowed(ageAllowed).age(age).build();
   }
 }

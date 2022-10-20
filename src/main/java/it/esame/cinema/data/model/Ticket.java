@@ -1,5 +1,8 @@
 package it.esame.cinema.data.model;
 
+import it.esame.cinema.data.archetype.Dto;
+import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.dto.TicketDto;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +27,7 @@ import org.hibernate.Hibernate;
 @Setter
 @Entity(name = "Ticket")
 @Table(name = "ticket")
-public class Ticket {
+public class Ticket implements Model {
 
   @Id
   @Column(name = "id", nullable = false)
@@ -82,5 +85,13 @@ public class Ticket {
   @Override
   public int hashCode() {
     return getClass().hashCode();
+  }
+
+
+  @Override
+  public TicketDto toDto() {
+    return TicketDto.builder().id(id).price(price).discountElderly(discountElderly)
+        .discountChildren(discountChildren).seatPosition(seatPosition).idFilm(idFilm.toDto())
+        .idProjectionRoom(idProjectionRoom.toDto()).build();
   }
 }

@@ -2,6 +2,7 @@ package it.esame.cinema.data.model;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.dto.CinemaDto;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,7 +66,8 @@ public class Cinema implements Model {
   }
 
   @Override
-  public Dto toDto() {
-    return null;
+  public CinemaDto toDto() {
+    return CinemaDto.builder().id(id).idProjectionRoom(idProjectionRoom)
+        .totalIncoming(totalIncoming).build();
   }
 }

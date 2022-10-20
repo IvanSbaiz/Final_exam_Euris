@@ -2,6 +2,7 @@ package it.esame.cinema.data.dto;
 
 import it.esame.cinema.data.archetype.Dto;
 import it.esame.cinema.data.archetype.Model;
+import it.esame.cinema.data.model.Ticket;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,7 +36,9 @@ public class TicketDto implements Dto {
   private ProjectionRoomDto idProjectionRoom;
 
   @Override
-  public Model toModel() {
-    return null;
+  public Ticket toModel() {
+    return Ticket.builder().id(id).price(price).discountElderly(discountElderly)
+        .discountChildren(discountChildren).seatPosition(seatPosition).idFilm(idFilm.toModel())
+        .idProjectionRoom(idProjectionRoom.toModel()).build();
   }
 }
